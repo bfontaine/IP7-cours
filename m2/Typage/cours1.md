@@ -1,14 +1,14 @@
 # Typage - Cours 1 : Introduction
 
-Un **système de type** est une méthode *syntaxique* effetive pour prouver
+Un **système de type** est une méthode *syntaxique* effective pour prouver
 l'absence de certains *comportements* de programmes grâce à la *classification*
 des phrases selon les *types de valeurs* qu'elles calculent.  
-On retorouve généralement les *types de base*, les *structures* de données, et
+On retrouve généralement les *types de base*, les *structures* de données, et
 les *fonctions*.  
 
 Le typage peut être **dynamique** (à l'exécution) ou **statique** (à la
 compilation). Dans ce dernier cas, on veut éviter d'interdire trop de
-programmes pourtant correctes.  
+programmes pourtant corrects.  
 
 On cherche certaines garanties de correction :
 
@@ -24,7 +24,7 @@ Le typage a plusieurs intérêts :
 - permet la documentation
 - facilite la maintenance
 - implique une compilation efficace
-- correspond au coté *safe* du langage (typage faible, dans lequel on
+- correspond au côté *safe* du langage (typage faible, dans lequel on
 peut caster, ou typage fort, accordant souvent des *backdoor*)
 
 Parfois le typage est insuffisant :
