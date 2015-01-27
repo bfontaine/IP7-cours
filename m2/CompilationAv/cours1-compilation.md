@@ -48,7 +48,37 @@ La sémantique opérationnelle est spécifiée par des **jugements** :
 ![p.20-21](img/cours1/1_1.png)  
 La sémantique à **petits pas** associe un terme au terme obtenu à l'étape
 suivante du calcul.  
-La sémantique à **grands pas** associe un terme à son résultat.
+La sémantique à **grands pas** associe un terme à son résultat.  
+
+Interprétation en OCaml :  
+```
+(* la syntaxe *)
+type t =
+| Int of int
+| BinOp of t * binop * t
+and
+binop = Add | Sub | Mul | Div
+
+(* sémantique à petits pas *)
+let rec step : t -> t = function
+ | Int _ -> None
+ | BinOp (Int m, Add, Int n) -> Some (Int (m+n))
+ | BinOp (Int m, Mul, Int n) -> Some (Int (m*n))
+ | BinOp (Int m, Div, Int n) -> Some (Int (m/n))
+ | BinOp (Int m, Sub, Int n) -> Some (Int (m-n))
+ | BinOp (Int m, op, e') -> Some (BinOp (Int m, op, step e'))
+ | BinOp (e, op, e') -> Some (BinOp (step e, op, e'))
+
+(* sémantique à grands pas *)
+type value = int
+
+let rec eval : t -> value = function
+ | Int x -> x
+ | BinOp (e, Add, e') -> eval e + eval e'
+ | BinOp (e, Mul, e') -> eval e * eval e'
+ | BinOp (e, Div, e') -> eval e / eval e'
+ | BinOp (e, Sub, e') -> eval e - eval e'
+```
 
 ## Machines
 
