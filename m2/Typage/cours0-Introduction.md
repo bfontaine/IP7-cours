@@ -1,4 +1,4 @@
-# Typage - Cours 1 : Introduction
+# Typage - Cours 0 : Introduction
 
 Un **système de type** est une méthode *syntaxique* effective pour prouver
 l'absence de certains *comportements* de programmes grâce à la *classification*
