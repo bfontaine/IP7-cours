@@ -166,3 +166,117 @@ Ce dictionnaire des signatures peut être obtenu :
 
 * par des **annotations de type**, étendant la syntaxe du langage (```def```)
 * par un algorithme d'**inférence de type**
+
+### Des fonctions à la machine virtuelle
+
+On suppose que les programmes sont bien typés.  
+Un appel *f(e1, ... en)* fait un va-et-vient avec le flot de contrôle :
+
+* l'**appelant** donne le contrôle au corps de la fonction
+* le corps de la fonction est évalué
+* le contrôle est rendu à l'appelant
+
+L'instruction de branchement va être utile.
+
+Traduction correcte :
+```
+C(f(e1,...,en)) =
+    C(e1)
+    define
+    ...
+    C(en)
+    define
+    remember l
+    branch lf
+l:  ...
+
+C(def f(x1,...,xn)=e)=
+lf: C(e)
+    undefine
+    ...(n fois)...
+    undefine
+    swap
+    ubranch
+```
+On a dû introduire de nouvelles instructions pour la machine virtuelle :
+
+* *remember l* permet de pousser des étiquettes sur la pile
+* *ubranch* est un branchement inconnu, l'adresse étant fournie par le sommet
+de la pile
+* *swap* échange les deux éléments au sommet de la pile
+* *exit* stoppe la machine
+
+**Remarque :** il y a beaucoup d'empilements et de dépilements, et chaque fois
+on alloue / désalloue un petit espace mémoire. On voudrait pouvoir pré-allouer
+l'espace de pile nécessaire à l'évaluation d'une expression.  
+Nombre maximal de variables nécessaires :  
+![p48](img/cours2/2_10.png)  
+Nombre maximal de résultats temporaires :  
+![p49](img/cours2/2_11.png)  
+
+On a de nouveau besoin d'étendre la machine virtuelle :
+
+* alloc_vstack N : alloue un bloc de taille N au sommet de ζv
+* alloc_rstack N : alloue un bloc de taille N au sommet de ζr
+* free_vstack : désalloue le bloc au sommet de ζv
+* free_rstack : désalloue le bloc au sommet de ζr
+
+Où placer ces instructions ?
+
+* Avant un appel de fonction *f(e1,...,en)=e* :
+  - on évalue *e1,...,en* ce qui empile des valeurs *v1,...vn* au sommet de ζr
+  - on pré-alloue un bloc de taille *n+sv(e)* au sommet de ζv, et un bloc de
+    taille *sr(e)* au sommet de ζr
+  - on déplace les *v1,...,vn* du second bloc de ζr au premier bloc de ζv
+* A la sortie de la fonction :
+  - on déplace la valeur au sommet de ζr vers le sommet du second bloc de ζr
+  - on désalloue les deux blocs
+* On a la garantie que la fonction ne modifiera que ces deux blocs
+
+#### Blocs d'activation
+
+On peut **factoriser les deux piles** en une seule : les deux blocs pré-alloués
+se fusionnent en un unique bloc (le **bloc d'activation d'une fonction**) qui
+contient deux sous-blocs ayant des positions connues.  
+On en profite pour stocker l'adresse de continuation du calcul.  
+
+L'agencement des sous-blocs est un peu astucieux :  
+![p55-56](img/cours2/2_12.png)  
+On peut implémenter le passage des arguments en incrémentant l'entier
+représentant le sommet de la pile. On doit toutefois toujours recopier la
+valeur de retour de la fonction.  
+On étend encore une fois la machine virtuelle :  
+
+* *alloc_stack N, M* : alloue un bloc d'activation de taille M débutant par un
+espace réservé pour N variables locales
+* *shift K* : déplace la base du bloc de K emplacements vers le bas, pour
+capturer le sommet du bloc précédent (là où se trouvent les arguments effectifs)
+* *unshift K* : transfère K valeurs du sommet du bloc courant vers sa base, et
+déplace la base de K emplacements vers le haut (permet de transférer le retour
+  de la fonction vers l'appelant)
+* *return* : récupère l'adresse de retour *l* dans le bloc, désalloue le bloc,
+et saute à l'adresse *l*.
+
+Langage de la machine virtuelle :  
+![p58](img/cours2/2_13.png)  
+
+Traduction :  
+```
+M=sv(e1)+K+sr(e1)
+N=sv(e1)
+
+C(f(a1,...,ak))=
+    C(a1)
+    ...
+    C(ak)
+    alloc_stack M,N
+    remember l
+    shift K
+    branch lf
+l:  ...
+
+C(def f(x1,...,xn)=e) =
+lf: C(e)
+    unshift 1
+    return
+```
