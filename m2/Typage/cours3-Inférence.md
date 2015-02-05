@@ -59,9 +59,9 @@ par ```fun``` ou ```let``` ont des noms différents. A chaque identifiant *x* es
 associée une variable de type *α<sub>x</sub>*.  
 On va parcourir l'expression, et pour chaque sous-expression *a* on ajoute des
 équations selon des règles :
-![p29](img/cours2/2_1.png)  
+![p29](img/cours3/3_1.png)  
 Exemple :
-![p29](img/cours2/2_2.png)
+![p29](img/cours3/3_2.png)
 
 Une **solution** de l'ensemble des équations *C(a)* est une substitution φ telle que,  
 pour toute équation τ<sub>1</sub>![=?](img/iseq.png)τ<sub>2</sub> dans
@@ -79,7 +79,7 @@ algorithme **mgu** :
 solution de *C* (de plus, toute autre solution ψ peut s'écrire *ψ=θoφ*)
 
 L'algorithme **mgu** est défini :  
-![p31](img/cours2/2_3.png)  
+![p31](img/cours3/3_3.png)  
 
 ### L'algorithme d'inférence
 
@@ -122,17 +122,17 @@ types *σ* par rapport à un ensemble *V* de "variables nouvelles".
 avec *β<sub>i</sub>* des variables distinctes choisies dans *V*.
 
 L'algorithme **W** :  
-![p33-34](img/cours2/2_4.png)  
+![p33-34](img/cours3/3_4.png)  
 Exemple :  
-![p34](img/cours2/2_5.png)
+![p34](img/cours3/3_5.png)
 
 ### Expansion des let
 
 En observant  
-![p38](img/cours2/2_6.png)  
+![p38](img/cours3/3_6.png)  
 et en vertu du lemme de substitution (*E⊢a<sub>2</sub>[x←a<sub>1</sub>]:τ*),
 on peut en fait substituer *x* par *a<sub>1</sub>* partout dans
 *a<sub>2</sub>*, au lieu de généraliser. On remplace la règle précédente par  
-![p38](img/cours2/2_7.png)  
+![p38](img/cours3/3_7.png)  
 Il faut typer *a<sub>1</sub>* dans tous les cas, car elle pourrait être mal
 typée, et *x* non utilisé dans *a<sub>2</sub>* donc non vérifiée.  
