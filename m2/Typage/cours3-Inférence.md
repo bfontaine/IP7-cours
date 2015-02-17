@@ -1,4 +1,4 @@
-# Typage - Cours 2 : Inférence de types
+# Typage - Cours 3 : Inférence de types
 
 ## Introduction
 
