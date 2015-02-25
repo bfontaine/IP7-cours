@@ -44,7 +44,7 @@ conversion implicite entre flottants et entiers.
 Il y a deux sortes de littéraux :
 
 - atomes : chaîne alphanumérique commençant par une minuscule, ou une chaîne
-arbitraite entre guillemets simples (**'**)
+arbitraite entre guillemets simples (**'**)e
 - noms : des mots, engendrables via la procédure **NewName**
 
 ## Enregistrements et tuples
@@ -60,7 +60,7 @@ tutu(1:A 2:B 3:C)
 tutu(A B C)
 ```
 
-Les opérations sur les enregistrements (exemple su *x*):
+Les opérations sur les enregistrements (exemple sur *x*):
 
 - accès à la valeur associée à la clé *c* : ```x.c```
 - arité (liste des clés) : ```{Arity x}```
