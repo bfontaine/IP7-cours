@@ -74,7 +74,7 @@ Sinon, ```tell x1 = y1, ..., tell xn = yn```.
 
 ### Ask
 
-L'opération ```ask``` va faire une tentative de ```tell``` pour vérifiée qu'une
+L'opération ```ask``` va faire une tentative de ```tell``` pour vérifier qu'une
 équation est impliquée logiquement par la mémoire.  
 Si le ```tell``` échoue, il y a une **incohérence**. Si il réussit, il y a
 deux cas de figure : si pour toute nouvelle liaison entre variables *z1 = z2*,
