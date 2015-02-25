@@ -139,7 +139,7 @@ in
     {FD.distribute naive [NbSlots]}
     {Browse NbSlots}
     %% Plan: Session --> Slot
-    {FD.tuple plan NbSessins 1#NbSlots Plan}
+    {FD.tuple plan NbSessions 1#NbSlots Plan}
     %% at most NbParSession per slot
     {For 1 NbSlots 1
     proc ($ Slot) {FD.atMost NbParSessions Plan Slot} end}
