@@ -26,7 +26,7 @@ Pour obtenir les solutions :
 si *P* est une procédure à un argument *X*
 * ```{SearchAll P}``` donne toutes les solutions dans une liste de valeurs.
 
-Souvent, on écrit *P* comme une fonction à zéro arguements.
+Souvent, on écrit *P* comme une fonction à zéro arguments.
 
 ## L'explorateur et l'inspecteur
 
