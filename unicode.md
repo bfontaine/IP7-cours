@@ -1,7 +1,11 @@
 caractère : code HTML (&XXXX;) ou entité  
+¬ : &not;  
+∧ : &and;  
+∨ : &or;  
 → : 8592 ou &rarr;  
 ← : 8594 ou &larr;  
 ⇒ : 8658 ou &rArr;  
+↔ : &harr;  
 ⇔ : 8660 ou &hArr;  
 ∀ : 8704 ou &forall;  
 ∃ : 8707 ou &exist;  
