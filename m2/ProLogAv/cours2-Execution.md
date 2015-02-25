@@ -59,7 +59,7 @@ end
 
 ## Mini-Oz
 
-**Mini-Oz** un le langage noyau. Il est utilisé seulement pour définir la
+**Mini-Oz** est le langage noyau. Il est utilisé seulement pour définir la
 sémantique.  
 Une instruction ```<s>``` peut être :
 
