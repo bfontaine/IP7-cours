@@ -30,4 +30,14 @@ terminer, mais jamais provoquer d'erreur d'exécution.
 
 ## Sémantique à réductions (petits pas)
 
-## Sûreté du typage
+La sémantique à réduction va décrire toutes les étapes du calcul.  
+![](img/cours2/2_2.png)
+![](img/cours2/2_3.png)  
+
+**Rappels sur les contextes :**  
+Un **contexte** est une expression avec un "trou", noté *[]* (par exemple,
+*+([],2)* ).  
+L'operation de base sur un contexte *C* est l'application *C(a)* à une
+expression *a*.
+*C(a)* est l'expression dénotée par *C* où le trou *[]* a été remplacé par *a*.  
+Ainsi, *+([],2)* appliquée à *1* donne *+(1;2)*.  
