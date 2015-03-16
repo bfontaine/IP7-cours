@@ -58,7 +58,7 @@ script doit lier sa racine à une solution du problème (quand l'arbre de
 recherche est construit).
 ```
 proc {MonScript Res}
-  % déclaration de vraiables
+  % déclaration de variables
   sol(X Y)=Res
 in
   % définition des domaines
