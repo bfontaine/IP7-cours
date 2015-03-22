@@ -92,7 +92,7 @@ fonction pour l'optimiser ou la faire traiter un nouveau type.
 
 Le programme est vu comme un ensemble de composants concurrents. Ils 
 communiquent via une mémoire partagée ou s'envoient des messages sur des 
-canaux. Ils peuvent être synchrone ou asynchrone. Il existe la modèle 
+canaux. Ils peuvent être synchrone ou asynchrone. Il existe le modèle 
 optimiste et le modèle pessimiste. 
 
 ## Programmation logique 
